@@ -78,10 +78,10 @@ export class Toolbar extends BaseModule {
                     // console.log(this.img)
                     if (this.rotationvalue.indexOf('90') !== -1) {
                         let overlapFix = (this.img.width - this.img.height) / 2
-                        console.log(overlapFix)
                         MarginStyle.add(this.img, `${overlapFix}px auto`)
+                    } else {
+                        MarginStyle.add(this.img, '0 0 1em 1em')
                     }
-                    // TransformOriginStyle.add(this.img, 'top left');
                 },
                 isApplied: () => { },
 			},
@@ -91,7 +91,12 @@ export class Toolbar extends BaseModule {
                 apply: () => {
 					this.rotationvalue = this._setRotation('right');
                     TransformStyle.add(this.img, this.rotationvalue);
-                    // TransformOriginStyle.add(this.img, 'top left')
+                    if (this.rotationvalue.indexOf('90') !== -1) {
+                        let overlapFix = (this.img.width - this.img.height) / 2
+                        MarginStyle.add(this.img, `${overlapFix}px auto`)
+                    } else {
+                        MarginStyle.add(this.img, '0 0 1em 1em')
+                    }
                 },
                 isApplied: () => { },
 			},
