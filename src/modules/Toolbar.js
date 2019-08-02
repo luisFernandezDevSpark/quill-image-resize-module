@@ -76,7 +76,7 @@ export class Toolbar extends BaseModule {
 					this.rotationvalue = this._setRotation('left');
                     TransformStyle.add(this.img, this.rotationvalue);
                     // console.log(this.img)
-                    if (this.rotationvalue === 90 || this.rotationvalue === -90) {
+                    if (this.rotationvalue.indexOf('90') !== -1) {
                         let overlapFix = (this.img.width - this.img.height) / 2
                         console.log(overlapFix)
                         MarginStyle.add(this.img, `${overlapFix}px auto`)
