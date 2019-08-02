@@ -13,6 +13,7 @@ const FloatStyle = new Parchment.Attributor.Style('float', 'float');
 const MarginStyle = new Parchment.Attributor.Style('margin', 'margin');
 const DisplayStyle = new Parchment.Attributor.Style('display', 'display');
 const TransformStyle = new Parchment.Attributor.Style('transform', 'transform');
+const TransformOriginStyle = new Parchment.Attributor.Style('transform-origin', 'transform-origin')
 
 export class Toolbar extends BaseModule {
 	rotation = 0;
@@ -73,7 +74,8 @@ export class Toolbar extends BaseModule {
 				icon: IconUndo,
                 apply: () => {
 					this.rotationvalue = this._setRotation('left');
-					TransformStyle.add(this.img, this.rotationvalue);
+                    TransformStyle.add(this.img, this.rotationvalue);
+                    TransformOriginStyle.add(this.img, 'top left');
                 },
                 isApplied: () => { },
 			},
@@ -82,7 +84,8 @@ export class Toolbar extends BaseModule {
                 icon: IconRedo,
                 apply: () => {
 					this.rotationvalue = this._setRotation('right');
-					TransformStyle.add(this.img, this.rotationvalue);
+                    TransformStyle.add(this.img, this.rotationvalue);
+                    TransformOriginStyle.add(this.img, 'top left')
                 },
                 isApplied: () => { },
 			},
