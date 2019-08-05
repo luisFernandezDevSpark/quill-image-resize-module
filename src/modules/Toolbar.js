@@ -33,7 +33,10 @@ export class Toolbar extends BaseModule {
     onDestroy = () => {};
 
 	// Nothing to update on drag because we are are positioned relative to the overlay
-    onUpdate = () => {};
+    onUpdate = () => {
+		console.log('updated')
+		this._defineAlignments()
+	};
 
     _defineAlignments = () => {
 		this.rotationvalue = '';
