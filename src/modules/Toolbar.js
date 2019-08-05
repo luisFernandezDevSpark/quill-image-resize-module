@@ -76,12 +76,7 @@ export class Toolbar extends BaseModule {
 					this.rotationvalue = this._setRotation('left');
                     TransformStyle.add(this.img, this.rotationvalue);
                     // console.log(this.img)
-                    if (this.rotationvalue.indexOf('90') !== -1) {
-                        let overlapFix = (this.img.width - this.img.height) / 2
-                        MarginStyle.add(this.img, `${overlapFix}px auto`)
-                    } else {
-                        MarginStyle.add(this.img, '0 0 1em 1em')
-                    }
+                    this._fixRotationOverlap(this.rotationvalue, this.img)
                 },
                 isApplied: () => { },
 			},
@@ -91,18 +86,28 @@ export class Toolbar extends BaseModule {
                 apply: () => {
 					this.rotationvalue = this._setRotation('right');
                     TransformStyle.add(this.img, this.rotationvalue);
-                    if (this.rotationvalue.indexOf('90') !== -1) {
-                        let overlapFix = (this.img.width - this.img.height) / 2
-                        MarginStyle.add(this.img, `${overlapFix}px auto`)
-                    } else {
-                        MarginStyle.add(this.img, '0 0 1em 1em')
-                    }
+                    this._fixRotationOverlap(this.rotationvalue, this.img)
                 },
                 isApplied: () => { },
 			},
 
         ];
-    };
+	};
+	
+	_fixRotationOverlap = (rotationvalue, img) => {
+		if (rotationvalue.indexOf('90') !== -1) {
+			let overlapFix = (img.width - img.height) / 2
+
+			if (img.width < img.height) {
+				let horizontalOverlapFix = (img.height - img.width) / 2
+				MarginStyle.add(img, `${overlapFix}px ${horizontalOverlapFix}px`)
+			} else {
+				MarginStyle.add(img, `${overlapFix}px auto`)
+			}
+		} else {
+			MarginStyle.add(img, '0')
+		}
+	}
 
     _addToolbarButtons = () => {
 		const buttons = [];
