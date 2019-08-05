@@ -9,7 +9,7 @@ import Quill from 'quill';
 // const Quill = window.Quill || lfQuill
 
 const Parchment = Quill.imports.parchment;
-const FloatStyle = new Parchment.Attributor.Style('float', 'float');
+const FloatStyle = new Parchment.Attributor.Style('text-align', 'text-align');
 const MarginStyle = new Parchment.Attributor.Style('margin', 'margin');
 const DisplayStyle = new Parchment.Attributor.Style('display', 'display');
 const TransformStyle = new Parchment.Attributor.Style('transform', 'transform');
@@ -54,8 +54,8 @@ export class Toolbar extends BaseModule {
                 icon: IconAlignCenter,
                 apply: () => {
                     DisplayStyle.add(this.img, 'block');
-                    FloatStyle.remove(this.img);
-                    MarginStyle.add(this.img, 'auto');
+                    FloatStyle.add(this.img, 'center');
+                    // MarginStyle.add(this.img, 'auto');
                 },
                 isApplied: () => MarginStyle.value(this.img) == 'auto',
             },
