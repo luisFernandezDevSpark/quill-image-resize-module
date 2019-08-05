@@ -33,10 +33,7 @@ export class Toolbar extends BaseModule {
     onDestroy = () => {};
 
 	// Nothing to update on drag because we are are positioned relative to the overlay
-    onUpdate = () => {
-		console.log('updated')
-		this._defineAlignments()
-	};
+    onUpdate = () => {};
 
     _defineAlignments = () => {
 		this.rotationvalue = '';
@@ -78,7 +75,7 @@ export class Toolbar extends BaseModule {
                 apply: () => {
 					this.rotationvalue = this._setRotation('left');
                     TransformStyle.add(this.img, this.rotationvalue);
-                    // console.log(this.img)
+                    console.log(TransformStyle.value(this.img))
                     this._fixRotationOverlap(this.rotationvalue, this.img)
                 },
                 isApplied: () => { },
