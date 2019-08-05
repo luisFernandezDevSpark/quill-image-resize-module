@@ -73,19 +73,20 @@ export class Toolbar extends BaseModule {
 				name: 'rotate-left',
 				icon: IconUndo,
                 apply: () => {
-					this.rotationvalue = this._setRotation('left');
-                    TransformStyle.add(this.img, this.rotationvalue);
-                    console.log(TransformStyle.value(this.img))
-					this._fixRotationOverlap(this.rotationvalue, this.img)
-					// let canvas = document.createElement('canvas')
-					// let context = canvas.getContext('2d')
-					// canvas.width = this.img.width
-					// canvas.height = this.img.height
-					// context.rotate(90 * Math.PI / 180)
-					// context.translate(0, -canvas.width)
-					// context.drawImage(this.img, 0, 0)
-					// let rotatedImg = canvas.toDataURL()
-					// this.img.src = rotatedImg					
+					// this.rotationvalue = this._setRotation('left');
+                    // TransformStyle.add(this.img, this.rotationvalue);
+                    // console.log(TransformStyle.value(this.img))
+					// this._fixRotationOverlap(this.rotationvalue, this.img)
+					let canvas = document.createElement('canvas')
+					let context = canvas.getContext('2d')
+					canvas.width = this.img.width
+					canvas.height = this.img.height
+					context.rotate(-90 * Math.PI / 180)
+					context.translate(-canvas.width, 0)
+					context.drawImage(this.img, 0, 0)
+					let rotatedImg = canvas.toDataURL()
+					this.img.src = rotatedImg	
+					this.requestUpdate()			
                 },
                 isApplied: () => { },
 			},
@@ -93,9 +94,19 @@ export class Toolbar extends BaseModule {
 				name: 'rotate-right',
                 icon: IconRedo,
                 apply: () => {
-					this.rotationvalue = this._setRotation('right');
-                    TransformStyle.add(this.img, this.rotationvalue);
-                    this._fixRotationOverlap(this.rotationvalue, this.img)
+					// this.rotationvalue = this._setRotation('right');
+                    // TransformStyle.add(this.img, this.rotationvalue);
+					// this._fixRotationOverlap(this.rotationvalue, this.img)
+					let canvas = document.createElement('canvas')
+					let context = canvas.getContext('2d')
+					canvas.width = this.img.width
+					canvas.height = this.img.height
+					context.rotate(90 * Math.PI / 180)
+					context.translate(0, -canvas.width)
+					context.drawImage(this.img, 0, 0)
+					let rotatedImg = canvas.toDataURL()
+					this.img.src = rotatedImg	
+					this.requestUpdate()
                 },
                 isApplied: () => { },
 			},
